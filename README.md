@@ -1,8 +1,10 @@
 # LESSON
 
-[EXTERNAL FUNCTIONS](docs/lesson.md)
+https://en.cppreference.com/w/
+https://cplusplus.com/
+[LESSON](docs/lesson.cpp)
 
-# MINISHELL SUBJECT
+# C++ Module 00 - SUBJECT
 
 ![Image](img/en.subject_page-0001.jpg)
 ![Image](img/en.subject_page-0002.jpg)
