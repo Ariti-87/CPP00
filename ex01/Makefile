@@ -1,24 +1,13 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: arincon <arincon@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/09 12:23:16 by arincon           #+#    #+#              #
-#    Updated: 2024/01/11 09:33:44 by arincon          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME		:= phonebook
+NAME		:= awesome
 
 #SOURCES_____________________________________________________________
 
-SRCS		:=	phonebook.cpp
+SRCS		:=	main.cpp Contact.cpp Phonebook.cpp
 
 #OBJECT______________________________________________________________
 
-OBJS		:= $(SRCS:.cpp=.o)
+BUILD_DIR	:= .build
+OBJS		:= $(SRCS:/%.cpp=$(BUILD_DIR)/%.o)
 
 #FLAGS_______________________________________________________________
 
@@ -36,6 +25,7 @@ WHITE	=	\033[0;97m
 RESET	=	\033[0m
 YELLOW 	=	\033[0;93m
 
+
 #MAIN_RULE___________________________________________________________
 
 all: $(NAME)
@@ -43,7 +33,13 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo -n "$(YELLOW)Compiling	${WHITE}→	$(YELLOW)$(NAME)$(RESET) "
 	@echo "$(GREEN)[ok]✓$(RESET)"
-	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(OBJS) -o $(NAME)
+
+#OBJECT_RULE_________________________________________________________
+
+$(BUILD_DIR)/%.o: %.cpp
+	$(DIR_DUP)
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 #CLEAN_RULE__________________________________________________________
 
@@ -58,10 +54,3 @@ fclean: clean
 	@echo "$(GREEN)[ok]$(RED)✗$(RESET)"
 
 re: fclean all
-
-
-#SPEC________________________________________________________________
-
-.PHONY: clean fclean re
-.SILENT:
-
