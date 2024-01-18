@@ -55,3 +55,4 @@ void Contact::setDarkestSecret(std::string str)
 {
 	m_dark = str;
 }
+

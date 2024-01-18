@@ -55,5 +55,30 @@ void Phonebook::add()
 		m_index = 0;
 }
 void Phonebook::search()
-{}
+{
+	// int len(10);
+	int i(1);
+
+	std::cout << "_____________________________________________" << std::endl;
+	std::cout << "|index     |first name|last name |nickname  |" << std::endl;
+	std::cout << "|__________|__________|__________|__________|" << std::endl;
+	while (i == m_index)
+	{
+		std::cout << "|" << i << "         |" << m_contact->getFirstName() << std::endl;
+		i++;
+	}
+	std::cout << std::endl;
+}
+
+// int addSpace(std::string str)
+// {
+
+// }
+
+void changeString(std::string str)
+{
+	// unsigned sz = str.size();
+	if (str.size() > 10)
+		str.resize(9, '.');
+}
 

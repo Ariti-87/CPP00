@@ -7,7 +7,7 @@ SRCS		:=	main.cpp Contact.cpp Phonebook.cpp
 #OBJECT______________________________________________________________
 
 BUILD_DIR	:= .build
-OBJS		:= $(SRCS:/%.cpp=$(BUILD_DIR)/%.o)
+OBJS		:= $(SRCS:%.cpp=$(BUILD_DIR)/%.o)
 
 #FLAGS_______________________________________________________________
 
@@ -45,7 +45,7 @@ $(BUILD_DIR)/%.o: %.cpp
 
 clean:
 	@echo -n "$(RED)Deleting	${WHITE}→	$(RED)$(NAME) object$(RESET) "
-	$(RM) $(OBJS)
+	$(RM) -r $(BUILD_DIR)
 	@echo "$(GREEN)[ok]$(RED)✗$(RESET)"
 
 fclean: clean
@@ -54,3 +54,8 @@ fclean: clean
 	@echo "$(GREEN)[ok]$(RED)✗$(RESET)"
 
 re: fclean all
+
+#SPEC________________________________________________________________
+
+.PHONY: clean fclean re
+.SILENT:

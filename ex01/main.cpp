@@ -16,6 +16,7 @@ int	main(void)
 		else if (str == "EXIT")
 			return (0);
 		else
-			std::cout << "Invalid command" << std::endl ;
+			// std::cout << "Invalid command" << std::endl ;
+			continue;
 		}
 }

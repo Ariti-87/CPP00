@@ -2,6 +2,7 @@
 #define DEF_PHONEBOOK
 
 #include <iostream>
+#include <string>
 #include "Contact.hpp"
 
 class Phonebook
@@ -19,5 +20,9 @@ class Phonebook
 	Contact m_contact[8];
 	int m_index;
 };
+
+// int			addSpace(std::string);
+void changeString(std::string);
+
 
 #endif

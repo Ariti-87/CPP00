@@ -19,6 +19,7 @@ class Contact
 	void setNickname(std::string str);
 	void setNumber(std::string str);
 	void setDarkestSecret(std::string str);
+	void printContact() const;
 
 	private:
 
