@@ -54,31 +54,63 @@ void Phonebook::add()
 	if (m_index == 8)
 		m_index = 0;
 }
+
+std::string changeString(std::string const str)
+{
+	std::string sz = str;
+
+	if (sz.size() > 10)
+	{
+		sz.resize(9);
+		sz.resize(10, '.');
+	}
+	else if (sz.size() < 10)
+	{
+		sz.resize(10, ' ');
+	}
+	return (sz);
+}
+
 void Phonebook::search()
 {
-	// int len(10);
 	int i(1);
+	std::string str("");
 
 	std::cout << "_____________________________________________" << std::endl;
 	std::cout << "|index     |first name|last name |nickname  |" << std::endl;
 	std::cout << "|__________|__________|__________|__________|" << std::endl;
-	while (i == m_index)
+	while (i <= 8 && m_contact[i - 1].getFirstName() != "")
 	{
-		std::cout << "|" << i << "         |" << m_contact->getFirstName() << std::endl;
+		std::cout << "|" << i << "         ";
+		std::cout << '|' << changeString(m_contact[i - 1].getFirstName());
+		std::cout << '|' << changeString(m_contact[i - 1].getLastName());
+		std::cout << '|' << changeString(m_contact[i - 1].getNickname()) << '|' << std::endl;
 		i++;
+	}
+	std::cout << "|__________|__________|__________|__________|" << std::endl << std::endl;
+	while (str == "")
+	{
+		std::cout << "Enter an index for more information : " << std::endl;
+		getline(std::cin, str);
+		if (str.size() == 1 && str[0] >= '1' && str[0] <= '8')
+		{
+			if(m_contact[str[0] - 1 - '0'].getFirstName() != "")
+				print(m_contact[str[0] - 1 - '0']);
+			else
+				std::cout << "Contact no registered yet" << std::endl;
+		}
+		else
+			std::cout << "Index non existant" << std::endl;
 	}
 	std::cout << std::endl;
 }
 
-// int addSpace(std::string str)
-// {
-
-// }
-
-void changeString(std::string str)
+void Phonebook::print(Contact contact)
 {
-	// unsigned sz = str.size();
-	if (str.size() > 10)
-		str.resize(9, '.');
+	std::cout << "First Name : " << contact.getFirstName() << std::endl;
+	std::cout << "Last Name : " << contact.getLastName() << std::endl;
+	std::cout << "Nickname : " << contact.getNickname() << std::endl;
+	std::cout << "Number : " << contact.getNumber() << std::endl;
+	std::cout << "Darkest Secret : " << contact.getDarkestSecret() << std::endl;
 }
 

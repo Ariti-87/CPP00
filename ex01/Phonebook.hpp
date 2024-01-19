@@ -21,8 +21,6 @@ class Phonebook
 	int m_index;
 };
 
-// int			addSpace(std::string);
-void changeString(std::string);
-
+std::string changeString(std::string const str);
 
 #endif

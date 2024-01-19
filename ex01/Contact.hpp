@@ -14,11 +14,11 @@ class Contact
 	std::string getNickname() const;
 	std::string getNumber() const;
 	std::string getDarkestSecret() const;
-	void setFirstName(std::string str);
-	void setLastName(std::string str);
-	void setNickname(std::string str);
-	void setNumber(std::string str);
-	void setDarkestSecret(std::string str);
+	void setFirstName(std::string const& str);
+	void setLastName(std::string const& str);
+	void setNickname(std::string const& str);
+	void setNumber(std::string const& str);
+	void setDarkestSecret(std::string const& str);
 	void printContact() const;
 
 	private:
