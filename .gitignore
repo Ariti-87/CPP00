@@ -23,8 +23,8 @@
 *.gch
 
 # Exec
-cub3D
+megaphone
+awesome
+bank
 .nfs*
 
-# So_long
-so_long/
