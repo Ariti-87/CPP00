@@ -6,7 +6,7 @@
 #    By: arincon <arincon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 12:23:16 by arincon           #+#    #+#              #
-#    Updated: 2024/02/02 12:27:14 by arincon          ###   ########.fr        #
+#    Updated: 2024/02/02 17:39:55 by arincon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,14 @@ SRCS		:=	Megaphone.cpp
 
 #OBJECT______________________________________________________________
 
-OBJS		:= $(SRCS:.cpp=.o)
+BUILD_DIR	:= .build
+OBJS		:= $(SRCS:%.cpp=$(BUILD_DIR)/%.o)
+DEPS		:= $(OBJS:.o=.d)
 
 #FLAGS_______________________________________________________________
 
 CXX			:= c++
-CXXFLAGS	:= -Wall -Wextra -Werror -std=c++98 -g3
+CXXFLAGS	:= -Wall -Wextra -Werror -std=c++98 -g3 -MMD -MP
 RM			:= rm -f
 MAKEFLAGS	+= --no-print-directory
 DIR_DUP		= mkdir -p $(@D)
@@ -36,6 +38,7 @@ WHITE	=	\033[0;97m
 RESET	=	\033[0m
 YELLOW 	=	\033[0;93m
 
+
 #MAIN_RULE___________________________________________________________
 
 all: $(NAME)
@@ -43,13 +46,21 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo -n "$(YELLOW)Compiling	${WHITE}→	$(YELLOW)$(NAME)$(RESET) "
 	@echo "$(GREEN)[ok]✓$(RESET)"
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(OBJS) -o $(NAME)
+
+#OBJECT_RULE_________________________________________________________
+
+$(BUILD_DIR)/%.o: %.cpp
+	$(DIR_DUP)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+-include $(DEPS)
 
 #CLEAN_RULE__________________________________________________________
 
 clean:
 	@echo -n "$(RED)Deleting	${WHITE}→	$(RED)$(NAME) object$(RESET) "
-	$(RM) $(OBJS)
+	$(RM) -r $(BUILD_DIR)
 	@echo "$(GREEN)[ok]$(RED)✗$(RESET)"
 
 fclean: clean
@@ -59,9 +70,8 @@ fclean: clean
 
 re: fclean all
 
-
 #SPEC________________________________________________________________
 
-.PHONY: clean fclean re
+.PHONY: all clean fclean re
 .SILENT:
 

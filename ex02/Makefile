@@ -2,17 +2,19 @@ NAME		:= bank
 
 #SOURCES_____________________________________________________________
 
-SRCS		:=	Account.cpp tests.cpp
+SRCS		:=	Account.cpp	\
+				tests.cpp
 
 #OBJECT______________________________________________________________
 
 BUILD_DIR	:= .build
 OBJS		:= $(SRCS:%.cpp=$(BUILD_DIR)/%.o)
+DEPS		:= $(OBJS:.o=.d)
 
 #FLAGS_______________________________________________________________
 
 CXX			:= c++
-CXXFLAGS	:= -Wall -Wextra -Werror -std=c++98 -g3
+CXXFLAGS	:= -Wall -Wextra -Werror -std=c++98 -g3 -MMD -MP
 RM			:= rm -f
 MAKEFLAGS	+= --no-print-directory
 DIR_DUP		= mkdir -p $(@D)
@@ -33,13 +35,15 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo -n "$(YELLOW)Compiling	${WHITE}→	$(YELLOW)$(NAME)$(RESET) "
 	@echo "$(GREEN)[ok]✓$(RESET)"
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(OBJS) -o $(NAME)
 
 #OBJECT_RULE_________________________________________________________
 
 $(BUILD_DIR)/%.o: %.cpp
 	$(DIR_DUP)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+-include $(DEPS)
 
 #CLEAN_RULE__________________________________________________________
 
@@ -57,5 +61,5 @@ re: fclean all
 
 #SPEC________________________________________________________________
 
-.PHONY: clean fclean re
+.PHONY: all clean fclean re
 .SILENT:
