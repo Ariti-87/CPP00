@@ -11,8 +11,8 @@ OBJS		:= $(SRCS:%.cpp=$(BUILD_DIR)/%.o)
 
 #FLAGS_______________________________________________________________
 
-CC			:= c++
-CFLAGS		:= -Wall -Wextra -Werror -std=c++98 -g
+CXX			:= c++
+CXXFLAGS	:= -Wall -Wextra -Werror -std=c++98 -g3
 RM			:= rm -f
 MAKEFLAGS	+= --no-print-directory
 DIR_DUP		= mkdir -p $(@D)
@@ -33,13 +33,13 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo -n "$(YELLOW)Compiling	${WHITE}→	$(YELLOW)$(NAME)$(RESET) "
 	@echo "$(GREEN)[ok]✓$(RESET)"
-	@$(CC) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 #OBJECT_RULE_________________________________________________________
 
 $(BUILD_DIR)/%.o: %.cpp
 	$(DIR_DUP)
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 #CLEAN_RULE__________________________________________________________
 

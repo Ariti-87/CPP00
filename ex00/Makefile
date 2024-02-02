@@ -6,7 +6,7 @@
 #    By: arincon <arincon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 12:23:16 by arincon           #+#    #+#              #
-#    Updated: 2024/01/16 16:25:13 by arincon          ###   ########.fr        #
+#    Updated: 2024/02/02 12:27:14 by arincon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ OBJS		:= $(SRCS:.cpp=.o)
 
 #FLAGS_______________________________________________________________
 
-CC			:= c++
-CFLAGS		:= -Wall -Wextra -Werror -std=c++98 -g
+CXX			:= c++
+CXXFLAGS	:= -Wall -Wextra -Werror -std=c++98 -g3
 RM			:= rm -f
 MAKEFLAGS	+= --no-print-directory
 DIR_DUP		= mkdir -p $(@D)
@@ -43,7 +43,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo -n "$(YELLOW)Compiling	${WHITE}→	$(YELLOW)$(NAME)$(RESET) "
 	@echo "$(GREEN)[ok]✓$(RESET)"
-	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 #CLEAN_RULE__________________________________________________________
 

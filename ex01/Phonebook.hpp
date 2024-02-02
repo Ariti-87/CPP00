@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <cstdlib>
 #include "Contact.hpp"
 
 class Phonebook
@@ -14,6 +16,7 @@ class Phonebook
 	void add();
 	void search();
 	void print(Contact contact);
+	std::string changeString(std::string const str);
 
 	private:
 
@@ -21,6 +24,5 @@ class Phonebook
 	int m_index;
 };
 
-std::string changeString(std::string const str);
 
 #endif

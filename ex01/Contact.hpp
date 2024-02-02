@@ -2,6 +2,7 @@
 #define DEF_CONTACT
 
 #include <iostream>
+#include <string>
 
 class Contact
 {
