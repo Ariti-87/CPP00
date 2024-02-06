@@ -63,4 +63,4 @@ re: fclean all
 #SPEC________________________________________________________________
 
 .PHONY: all clean fclean re
-.SILENT:
+# .SILENT:
